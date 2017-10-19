@@ -12,9 +12,9 @@ internal sealed class PropertyType(open val rawType: KClass<*>) {
         get() = this.rawType.asClassName().simpleName()
 
     companion object {
-        fun from(returnType: KType): PropertyType = when (returnType.arguments.size) {
-            0 -> Normal(returnType.jvmErasure)
-            else -> {
+        fun from(returnType: KType): PropertyType = when (returnType.arguments.isEmpty()) {
+            true  -> Normal(returnType.jvmErasure)
+            false -> {
                 val types = returnType.arguments.map {
                     this.from(it.type!!)
                 }
@@ -27,9 +27,7 @@ internal sealed class PropertyType(open val rawType: KClass<*>) {
 
     data class Generic(override val rawType: KClass<*>, private val typeArguments: List<PropertyType>): PropertyType(rawType) {
         override val name: String
-            get() {
-                return this.rawType.asClassName().simpleName() + "<" + this.typeArguments.joinToString { it.name } + ">"
-            }
+            get() = this.rawType.asClassName().simpleName() + "<" + this.typeArguments.joinToString { it.name } + ">"
 
         val typeVariableName: TypeVariableName
             get() = TypeVariableName(this.name, this.rawType)

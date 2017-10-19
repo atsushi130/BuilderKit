@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.atsushi130.builderkit</groupId>
+    <groupId>com.github.atsushi130</groupId>
     <artifactId>builderkit</artifactId>
     <version>0.1.0</version>
 

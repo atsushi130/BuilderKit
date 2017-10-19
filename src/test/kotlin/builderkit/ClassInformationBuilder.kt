@@ -1,6 +1,6 @@
 package builderkit
 
-class ClassInformationBuilder(private var className: String = "className", private var properties: List<Property> = listOf()) {
+internal class ClassInformationBuilder(private var className: String = "className", private var properties: List<Property> = listOf()) {
 
     fun build(): ClassInformation = ClassInformation(this.className, this.properties)
 

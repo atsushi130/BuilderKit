@@ -5,13 +5,13 @@ import kotlin.reflect.KClass
 import kotlin.reflect.full.memberProperties
 import kotlin.reflect.full.primaryConstructor
 
-data class ClassInformation(val className: String, val properties: List<Property>) {
+internal data class ClassInformation(val className: String, val properties: List<Property>) {
     companion object {
         /**
          * Get class information
          * @param kClass target class
          */
-        fun from(kClass: KClass<*>): ClassInformation {
+        internal fun from(kClass: KClass<*>): ClassInformation {
 
             val parameters = kClass.primaryConstructor?.parameters ?: throw BuilderGeneratorError.NotFoundPrimaryConstructor()
 

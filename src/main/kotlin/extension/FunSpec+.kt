@@ -7,7 +7,7 @@ import com.squareup.kotlinpoet.TypeVariableName
 /**
  * Define function
  */
-fun FunSpec.Companion.define(property: Property, returnType: TypeVariableName, vararg statements: String): FunSpec {
+internal fun FunSpec.Companion.define(property: Property, returnType: TypeVariableName, vararg statements: String): FunSpec {
 
     val (name, type) = property
     val methodName   = "with${name.translateFirstCharacterToUpperCase()}"

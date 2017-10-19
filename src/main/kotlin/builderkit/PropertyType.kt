@@ -6,7 +6,7 @@ import kotlin.reflect.KClass
 import kotlin.reflect.KType
 import kotlin.reflect.jvm.jvmErasure
 
-sealed class PropertyType(open val rawType: KClass<*>) {
+internal sealed class PropertyType(open val rawType: KClass<*>) {
 
     open val name: String
         get() = this.rawType.asClassName().simpleName()

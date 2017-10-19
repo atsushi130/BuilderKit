@@ -2,7 +2,7 @@ package builderkit
 
 import utility.kType
 
-class PropertyBuilder(private var name: String = "propertyName", private var type: PropertyType = PropertyType.from(String.kType)) {
+internal class PropertyBuilder(private var name: String = "propertyName", private var type: PropertyType = PropertyType.from(String.kType)) {
 
     fun build(): Property = Property(this.name, this.type)
 

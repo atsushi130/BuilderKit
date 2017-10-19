@@ -4,7 +4,7 @@ package extension
  * First character translate to UpperCase
  * @return translated string
  */
-fun String.translateFirstCharacterToUpperCase(): String {
+internal fun String.translateFirstCharacterToUpperCase(): String {
     return when (this.length) {
         0 -> ""
         1 -> this.toUpperCase()

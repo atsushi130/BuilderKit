@@ -8,7 +8,7 @@ import com.squareup.kotlinpoet.ParameterSpec
  * Define parameters from classInformation
  * @param classInformation Result of class analysis
  */
-fun ParameterSpec.Companion.defines(classInformation: ClassInformation): List<ParameterSpec> {
+internal fun ParameterSpec.Companion.defines(classInformation: ClassInformation): List<ParameterSpec> {
     return classInformation.properties.map { (name, property) ->
 
         val parameterSpec = when (property) {

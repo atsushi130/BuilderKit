@@ -12,7 +12,7 @@ import com.squareup.kotlinpoet.PropertySpec
  * @param mutable is Mutable?
  * @param modifier Access control etc.
  */
-fun PropertySpec.Companion.defines(classInformation: ClassInformation, mutable: Boolean, modifier: KModifier): List<PropertySpec> {
+internal fun PropertySpec.Companion.defines(classInformation: ClassInformation, mutable: Boolean, modifier: KModifier): List<PropertySpec> {
     return classInformation.properties.map { (name, property) ->
         val propertySpec = when (property) {
             is PropertyType.Normal  -> PropertySpec.builder(name, property.rawType)

@@ -84,6 +84,20 @@
         </repository>
     </distributionManagement>
 
+    <profiles>
+        <profile>
+            <id>release-sign-artifacts</id>
+            <!-- for release -->
+            <!-- mvn -DperformRelease=true deploy -->
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+        </profile>
+    </profiles>
+
     <build>
         <sourceDirectory>src/main/kotlin</sourceDirectory>
         <testSourceDirectory>src/test/kotlin</testSourceDirectory>

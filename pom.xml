@@ -13,10 +13,15 @@
 
     <licenses>
         <license>
-            <name>The MIT License (MIT)</name>
-            <url>http://opensource.org/licenses/MIT</url>
+            <name>Apache 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
     </licenses>
+
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/atsushi130/BuilderKit/issues</url>
+    </issueManagement>
 
     <developers>
         <developer>
@@ -36,14 +41,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.sourceVersion>1.8</project.build.sourceVersion>
         <project.build.targetVersion>1.8</project.build.targetVersion>
-        <project.reporting.outputDirectory>target/site</project.reporting.outputDirectory>
-        <clover.license.location>/home/y/conf/clover/clover.license</clover.license.location>
-        <maven.javadoc.skip>true</maven.javadoc.skip>
         <kotlin.version>1.1.51</kotlin.version>
-        <dokka.version>0.9.13
-        </dokka.version>
+        <dokka.version>0.9.13</dokka.version>
         <kotlinpoet.version>0.5.0</kotlinpoet.version>
         <junit.version>4.12</junit.version>
+        
+        <!-- use Dokka instead. -->
+        <maven.javadoc.skip>true</maven.javadoc.skip>
     </properties>
 
     <dependencies>
@@ -220,6 +224,4 @@
             </build>
         </profile>
     </profiles>
-
-
 </project>

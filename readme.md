@@ -1,6 +1,6 @@
 # BuilderKit
 
-[![mit licensed](https://img.shields.io/badge/license-MIT-00bce4.svg)](./LICENSE-MIT.md)
+[![apache licensed](https://img.shields.io/badge/license-Apache_2.0-d94c32.svg)](./license-apache.md)
 [![builderkit](https://img.shields.io/badge/kotlin-BuilderKit-3B5998.svg)](https://github.com/atsushi130/BuilderKit.git)
 ![kotlin](https://img.shields.io/badge/Language-Kotlin-f88909.svg)
 [![travis](https://travis-ci.org/atsushi130/BuilderKit.svg?branch=develop)](https://travis-ci.org/atsushi130/BuilderKit)
@@ -20,4 +20,14 @@ class Generator {
 Second, make a directory for generator.
 ```
 ❯ mkdir generate/src
+```
+
+## Dependency
+**Maven**
+```xml
+<dependency>
+    <groupId>com.github.atsushi130</groupId>
+    <artifactId>builderkit</artifactId>
+    <version>0.1.2</version>
+</dependency>
 ```

@@ -4,7 +4,9 @@ jdk:
   - oraclejdk8
 
 script:
-    - mvn clean build
+    - mvn clean
+    - mvn compile
+    - mvn test
 
 cache:
   directories:

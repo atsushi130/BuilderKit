@@ -1,0 +1,11 @@
+language: java
+
+jdk:
+  - oraclejdk8
+
+script:
+    - mvn clean build
+
+cache:
+  directories:
+    - $HOME/.m2

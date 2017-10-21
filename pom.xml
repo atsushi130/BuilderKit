@@ -6,7 +6,7 @@
 
     <groupId>com.github.atsushi130</groupId>
     <artifactId>builderkit</artifactId>
-    <version>0.1.2</version>
+    <version>0.2.0</version>
     <name>builderkit</name>
     <url>https://github.com/atsushi130/BuilderKit</url>
     <description>BuilderKit is TestDataBuilder auto generator.</description>

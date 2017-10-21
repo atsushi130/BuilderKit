@@ -6,7 +6,7 @@
 
     <groupId>com.github.atsushi130</groupId>
     <artifactId>builderkit</artifactId>
-    <version>0.2.0</version>
+    <version>0.3.0</version>
     <name>builderkit</name>
     <url>https://github.com/atsushi130/BuilderKit</url>
     <description>BuilderKit is TestDataBuilder auto generator.</description>
@@ -45,7 +45,7 @@
         <dokka.version>0.9.13</dokka.version>
         <kotlinpoet.version>0.5.0</kotlinpoet.version>
         <junit.version>4.12</junit.version>
-        
+
         <!-- use Dokka instead. -->
         <maven.javadoc.skip>true</maven.javadoc.skip>
     </properties>

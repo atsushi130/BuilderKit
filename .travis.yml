@@ -5,6 +5,9 @@ jdk:
 script:
   - travis_wait 360 mvn clean test -U
 before_deploy:
+  - openssl aes-256-cbc -K $encrypted_816651927961_key -iv $encrypted_816651927961_iv -in .travis.key.gpg.enc -out .travis.key.gpg -d
+  - chmod 600 .travis.key.gpg
+  - gpg --import .travis.key.gpg
   - mvn versions:set -DnewVersion=${TRAVIS_TAG}
 deploy:
   provider: script

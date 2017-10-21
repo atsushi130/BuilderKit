@@ -9,7 +9,7 @@ before_deploy:
 deploy:
   provider: script
   skip_cleanup: true
-  script: mvn -DperformRelease=true clean deploy -P release --settings .travis.settings.xml
+  script: mvn -DperformRelease=true clean deploy --settings .travis.settings.xml
   on:
     tags: true
 cache:

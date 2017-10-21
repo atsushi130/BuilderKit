@@ -1,9 +1,11 @@
 # BuilderKit
 
-[![apache licensed](https://img.shields.io/badge/license-Apache_2.0-d94c32.svg)](./license-apache.md)
-[![builderkit](https://img.shields.io/badge/kotlin-BuilderKit-3B5998.svg)](https://github.com/atsushi130/BuilderKit.git)
+[![apache licensed](https://img.shields.io/badge/License-Apache_2.0-d94c32.svg)](./license-apache.md)
+[![builderkit](https://img.shields.io/badge/Kotlin-BuilderKit-3B5998.svg)](https://github.com/atsushi130/BuilderKit.git)
 ![kotlin](https://img.shields.io/badge/Language-Kotlin-f88909.svg)
 [![travis](https://travis-ci.org/atsushi130/BuilderKit.svg?branch=develop)](https://travis-ci.org/atsushi130/BuilderKit)
+[![Issues](https://img.shields.io/github/issues-raw/atsushi130/BuilderKit.svg)](https://github.com/atsushi130/BuilderKit/issues)
+[![Version](https://img.shields.io/badge/Version-0.x-00b7c9.svg)](https://github.com/atsushi130/BuilderKit/issues)
 
 ## Usage
 First, implement Generator class to `/src/gen/kotlin`.
@@ -28,6 +30,11 @@ Second, make a directory for generator.
 <dependency>
     <groupId>com.github.atsushi130</groupId>
     <artifactId>builderkit</artifactId>
-    <version>0.1.2</version>
+    <version>0.2.0</version>
 </dependency>
+```
+
+**Gradle**
+```gradle
+compile 'com.github.atsushi130:builderkit:0.2.0'
 ```

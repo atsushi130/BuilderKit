@@ -5,7 +5,6 @@ jdk:
 script:
   - travis_wait 360 mvn clean test -U
 before_deploy:
-  - gpg --import .travis.key.gpg
   - mvn versions:set -DnewVersion=${TRAVIS_TAG}
 deploy:
   provider: script

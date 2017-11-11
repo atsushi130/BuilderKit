@@ -59,7 +59,7 @@ class BuilderGenerator {
 
             val classInformation = ClassInformation.from(kClass)
 
-            val file = FileSpec.builder("", "${classInformation.className}Builder").indent(indent)
+            val file = FileSpec.builder(classInformation.packageName, "${classInformation.className}Builder").indent(indent)
                     .addType(
                             TypeSpec.classBuilder("${classInformation.className}Builder")
                                     // Define primary constructor

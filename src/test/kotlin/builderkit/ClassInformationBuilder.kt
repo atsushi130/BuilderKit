@@ -16,9 +16,13 @@
 
 package builderkit
 
-internal class ClassInformationBuilder(private var className: String = "className", private var properties: List<Property> = listOf()) {
+internal class ClassInformationBuilder(
+        private var className: String = "className",
+        private var properties: List<Property> = listOf(),
+        private var packageName: String = "builderkit"
+) {
 
-    fun build(): ClassInformation = ClassInformation(this.className, this.properties)
+    fun build(): ClassInformation = ClassInformation(this.className, this.properties, this.packageName)
 
     fun withClassName(className: String): ClassInformationBuilder {
         this.className = className
@@ -27,6 +31,11 @@ internal class ClassInformationBuilder(private var className: String = "classNam
 
     fun withProperties(vararg properties: Property): ClassInformationBuilder {
         this.properties = properties.asList()
+        return this
+    }
+
+    fun withPackageName(packageName: String): ClassInformationBuilder {
+        this.packageName = packageName
         return this
     }
 }

@@ -18,10 +18,9 @@ package builderkit
 
 import com.squareup.kotlinpoet.asClassName
 import kotlin.reflect.KClass
-import kotlin.reflect.full.memberProperties
 import kotlin.reflect.full.primaryConstructor
 
-internal data class ClassInformation(val className: String, val properties: List<Property>) {
+internal data class ClassInformation(val className: String, val properties: List<Property>, val packageName: String) {
     companion object {
         /**
          * Get class information
@@ -37,7 +36,7 @@ internal data class ClassInformation(val className: String, val properties: List
                 Property(name, property)
             }
 
-            return ClassInformation(kClass.asClassName().simpleName(), properties)
+            return ClassInformation(kClass.asClassName().simpleName(), properties, kClass.java.`package`.name)
         }
     }
 }

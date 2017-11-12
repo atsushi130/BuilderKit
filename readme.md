@@ -5,7 +5,7 @@
 ![kotlin](https://img.shields.io/badge/Language-Kotlin-f88909.svg)
 [![travis](https://travis-ci.org/atsushi130/BuilderKit.svg?branch=develop)](https://travis-ci.org/atsushi130/BuilderKit)
 [![Issues](https://img.shields.io/github/issues-raw/atsushi130/BuilderKit.svg)](https://github.com/atsushi130/BuilderKit/issues)
-[![Version](https://img.shields.io/badge/Version-0.3.0-00b7c9.svg)](https://github.com/atsushi130/BuilderKit/issues)
+[![Version](https://img.shields.io/maven-central/v/com.github.atsushi130/builderkit.svg)](https://search.maven.org/#search|gav|1|g%3A"com.github.atsushi130"%20AND%20a%3A"builderkit")
 
 ## Usage
 First, implement Generator class to `/src/gen/kotlin`.

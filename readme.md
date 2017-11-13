@@ -25,7 +25,7 @@ Second, make a directory for generator.
 ```
 
 ## Outout Builder class
-** Sample model class**
+**Sample model class**
 ```kotlin
 data class ModelClass(val arg1: Int, val arg2: List<String>, val arg3: MyClass)
 ```

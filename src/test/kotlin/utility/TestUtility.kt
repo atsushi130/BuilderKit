@@ -30,9 +30,27 @@ val String.Companion.kType: KType
         return this.toKTypeFrom(Mock::class)
     }
 
+val String.Companion.nullableKType: KType
+    get() {
+        data class Mock(val arg: String?)
+        return this.toKTypeFrom(Mock::class)
+    }
+
 val String.Companion.listStringKType: KType
     get() {
         data class Mock(val arg: List<String>)
+        return this.toKTypeFrom(Mock::class)
+    }
+
+val String.Companion.listNullableStringKType: KType
+    get() {
+        data class Mock(val arg: List<String?>)
+        return this.toKTypeFrom(Mock::class)
+    }
+
+val String.Companion.nullableListStringKType: KType
+    get() {
+        data class Mock(val arg: List<String>?)
         return this.toKTypeFrom(Mock::class)
     }
 

@@ -31,12 +31,12 @@ class TestTypeSpec {
 
         val (name, type) = this.testProperty
         val parameterSpec = when (type) {
-            is PropertyType.Normal  -> ParameterSpec.builder(name, type.rawType)
+            is PropertyType.Normal  -> ParameterSpec.builder(name, TypeVariableName(type.name))
             is PropertyType.Generic -> ParameterSpec.builder(name, type.typeVariableName)
         }
 
         val propertySpec = when (type) {
-            is PropertyType.Normal  -> PropertySpec.builder(name, type.rawType)
+            is PropertyType.Normal  -> PropertySpec.builder(name, TypeVariableName(type.name))
             is PropertyType.Generic -> PropertySpec.builder(name, type.typeVariableName)
         }
 

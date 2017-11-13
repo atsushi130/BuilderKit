@@ -31,7 +31,13 @@ class TestPropertyType {
         @Test
         fun analyzable() {
             val result = PropertyType.from(String.kType)
-            assertEquals(Normal(String::class), result)
+            assertEquals(Normal(String::class, false), result)
+        }
+
+        @Test
+        fun nullable_analyzable() {
+            val result = PropertyType.from(String.nullableKType)
+            assertEquals(Normal(String::class, true), result)
         }
     }
 
@@ -39,15 +45,29 @@ class TestPropertyType {
 
         @Test
         fun analyzable_single_nested() {
-            val expect = Generic(List::class, listOf(Normal(String::class)))
+            val expect = Generic(List::class, false, listOf(Normal(String::class, false)))
             val result = PropertyType.from(String.listStringKType)
             assertEquals(expect, result)
         }
 
         @Test
+        fun analyzable_single_nullable_nested() {
+            val expect = Generic(List::class, false, listOf(Normal(String::class, true)))
+            val result = PropertyType.from(String.listNullableStringKType)
+            assertEquals(expect, result)
+        }
+
+        @Test
+        fun nullable_analyzable() {
+            val expect = Generic(List::class, true, listOf(Normal(String::class , false)))
+            val result = PropertyType.from(String.nullableListStringKType)
+            assertEquals(expect, result)
+        }
+
+        @Test
         fun analyzable_double_nested() {
-            val nestType = Generic(List::class, listOf(Normal(String::class)))
-            val expect   = Generic(List::class, listOf(nestType))
+            val nestType = Generic(List::class, false, listOf(Normal(String::class, false)))
+            val expect   = Generic(List::class, false, listOf(nestType))
             val result   = PropertyType.from(String.doubleNestedListStringKType)
             assertEquals(expect, result)
         }
@@ -57,7 +77,7 @@ class TestPropertyType {
 
         @Test
         fun analyzable_double_type_arguments() {
-            val expect = Generic(Pair::class, listOf(Normal(String::class), Normal(String::class)))
+            val expect = Generic(Pair::class, false, listOf(Normal(String::class, false), Normal(String::class, false)))
             val result = PropertyType.from(String.pairStringKType)
             assertEquals(expect, result)
         }

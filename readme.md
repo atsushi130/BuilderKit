@@ -27,7 +27,7 @@ Second, make a directory for generator.
 ## Outout Builder class
 **Sample model class**
 ```kotlin
-data class ModelClass(val arg1: Int, val arg2: List<String>, val arg3: MyClass)
+data class ModelClass(val arg1: Int, val arg2: List<String>, val arg3: MyClass, val arg4: String?)
 ```
 
 **Output builder class**
@@ -51,6 +51,11 @@ class ModelClassBuilder private constructor(
 
     fun withArg3(arg3: MyClass): ModelClassBuilder {
         this.arg3 = arg3
+        return this
+    }
+
+    fun withArg4(arg4: String?): ModelClassBuilder {
+        this.arg4 = arg4
         return this
     }
     companion object {

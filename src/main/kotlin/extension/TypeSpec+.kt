@@ -57,3 +57,12 @@ internal fun TypeSpec.Builder.defineWithFunctions(classInformation: ClassInforma
     this.addFunctions(functions)
     return this
 }
+
+/**
+ * Define companion object
+ * @param classInformation target class information
+ */
+internal fun TypeSpec.Builder.defineCompanion(classInformation: ClassInformation): TypeSpec.Builder {
+    val companionProperty = PropertySpec.defineCompanion(classInformation.className).build()
+    return this.companionObject(TypeSpec.companionObjectBuilder().addProperty(companionProperty).build())
+}

@@ -22,30 +22,44 @@ import kotlin.reflect.KClass
 import kotlin.reflect.KType
 import kotlin.reflect.jvm.jvmErasure
 
-internal sealed class PropertyType(open val rawType: KClass<*>) {
+internal sealed class PropertyType(open val rawType: KClass<*>, open val optional: Boolean) {
 
     open val name: String
-        get() = this.rawType.asClassName().simpleName()
+        get() {
+            val typeString = this.rawType.asClassName().simpleName()
+            return when (this.optional) {
+                true  -> typeString + "?"
+                false -> typeString
+            }
+        }
+
+    val typeVariableName: TypeVariableName
+            get() = TypeVariableName(this.name, this.rawType)
 
     companion object {
         fun from(returnType: KType): PropertyType = when (returnType.arguments.isEmpty()) {
-            true  -> Normal(returnType.jvmErasure)
+            true  -> Normal(returnType.jvmErasure, returnType.isMarkedNullable)
             false -> {
                 val types = returnType.arguments.map {
                     this.from(it.type!!)
                 }
-                Generic(returnType.jvmErasure, types)
+                Generic(returnType.jvmErasure, returnType.isMarkedNullable, types)
             }
         }
     }
 
-    data class Normal(override val rawType: KClass<*>): PropertyType(rawType)
+    data class Normal(override val rawType: KClass<*>, override val optional: Boolean): PropertyType(rawType, optional)
 
-    data class Generic(override val rawType: KClass<*>, private val typeArguments: List<PropertyType>): PropertyType(rawType) {
+    data class Generic(
+            override val rawType: KClass<*>, override val optional: Boolean, private val typeArguments: List<PropertyType>
+    ): PropertyType(rawType, optional) {
         override val name: String
-            get() = this.rawType.asClassName().simpleName() + "<" + this.typeArguments.joinToString { it.name } + ">"
-
-        val typeVariableName: TypeVariableName
-            get() = TypeVariableName(this.name, this.rawType)
+            get() {
+                val typeString = this.rawType.asClassName().simpleName() + "<" + this.typeArguments.joinToString { it.name } + ">"
+                return when (this.optional) {
+                    true  -> typeString + "?"
+                    false -> typeString
+                }
+            }
     }
 }

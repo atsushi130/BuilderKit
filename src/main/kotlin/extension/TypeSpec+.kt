@@ -29,8 +29,7 @@ internal fun TypeSpec.Builder.definePrimaryConstructor(classInformation: ClassIn
     val parameters = ParameterSpec.defines(classInformation)
     val properties = PropertySpec.defines(classInformation, true, KModifier.PRIVATE)
 
-    this.primaryConstructor(FunSpec.constructorBuilder().addParameters(parameters).build()).addProperties(properties).build()
-    return this
+    return this.primaryConstructor(FunSpec.constructorBuilder().addParameters(parameters).addModifiers(KModifier.PRIVATE).build()).addProperties(properties)
 }
 
 /**
@@ -38,9 +37,8 @@ internal fun TypeSpec.Builder.definePrimaryConstructor(classInformation: ClassIn
  * @param classInformation target class information
  */
 internal fun TypeSpec.Builder.defineBuildFunction(classInformation: ClassInformation): TypeSpec.Builder {
-    this.addFunction(
-            FunSpec.builder("build").addStatement("return ${classInformation.className}(${classInformation.properties.buildModelArguments()})").build())
-    return this
+    val function = FunSpec.builder("build").addStatement("return ${classInformation.className}(${classInformation.properties.buildModelArguments()})").build()
+    return this.addFunction(function)
 }
 
 /**
@@ -54,8 +52,7 @@ internal fun TypeSpec.Builder.defineWithFunctions(classInformation: ClassInforma
         FunSpec.define(it, returnType, "this.${it.first} = ${it.first}", "return this")
     }
 
-    this.addFunctions(functions)
-    return this
+    return this.addFunctions(functions)
 }
 
 /**

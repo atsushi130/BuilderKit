@@ -44,7 +44,7 @@ class TestTypeSpec {
         val property  = propertySpec.initializer(name).mutable(true).addModifiers(KModifier.PRIVATE).build()
 
         val expect = TypeSpec.classBuilder(this.testClassInformation.className)
-                             .primaryConstructor(FunSpec.constructorBuilder().addParameter(parameter).build()).addProperty(property)
+                             .primaryConstructor(FunSpec.constructorBuilder().addParameter(parameter).addModifiers(KModifier.PRIVATE).build()).addProperty(property)
                              .build()
 
         val result = TypeSpec.classBuilder(this.testClassInformation.className).definePrimaryConstructor(this.testClassInformation).build()

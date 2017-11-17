@@ -17,8 +17,10 @@
 package extension
 
 import builderkit.ClassInformation
+import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.PropertySpec
+import com.squareup.kotlinpoet.TypeVariableName
 
 /**
  * Define properties from classInformation
@@ -30,4 +32,14 @@ internal fun PropertySpec.Companion.defines(classInformation: ClassInformation, 
     return classInformation.properties.map { (name, property) ->
         PropertySpec.builder(name, property.typeVariableName).initializer(name).mutable(mutable).addModifiers(modifier).build()
     }
+}
+
+/**
+ * Define property of companion
+ * @param className shared object class name
+ */
+internal fun PropertySpec.Companion.defineCompanion(className: String): PropertySpec.Builder {
+    val builderClassName = "${className}Builder"
+    val getter           = FunSpec.getterBuilder().addStatement("return $builderClassName()").build()
+    return this.builder("shared", TypeVariableName("$builderClassName")).getter(getter)
 }

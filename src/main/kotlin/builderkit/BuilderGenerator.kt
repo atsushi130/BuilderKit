@@ -16,8 +16,8 @@
 
 package builderkit
 
-import com.squareup.kotlinpoet.FileSpec
-import com.squareup.kotlinpoet.TypeSpec
+import com.squareup.kotlinpoet.*
+import extension.defineCompanion
 import extension.defineBuildFunction
 import extension.defineWithFunctions
 import extension.definePrimaryConstructor
@@ -62,6 +62,8 @@ class BuilderGenerator {
             val file = FileSpec.builder(classInformation.packageName, "${classInformation.className}Builder").indent(indent)
                     .addType(
                             TypeSpec.classBuilder("${classInformation.className}Builder")
+                                    // Define companion object
+                                    .defineCompanion(classInformation)
                                     // Define primary constructor
                                     .definePrimaryConstructor(classInformation)
                                     // Define build method

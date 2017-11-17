@@ -27,12 +27,12 @@ Second, make a directory for generator.
 ## Outout Builder class
 **Sample model class**
 ```kotlin
-data class ModelClass(val arg1: Int, val arg2: List<String>, val arg3: MyClass)
+data class ModelClass(val arg1: Int, val arg2: List<String>, val arg3: MyClass, val arg4: String?)
 ```
 
 **Output builder class**
 ```kotlin
-class ModelClassBuilder(
+class ModelClassBuilder private constructor(
         private var arg1: Int,
         private var arg2: List<String>,
         private var arg3: MyClass
@@ -53,6 +53,15 @@ class ModelClassBuilder(
         this.arg3 = arg3
         return this
     }
+
+    fun withArg4(arg4: String?): ModelClassBuilder {
+        this.arg4 = arg4
+        return this
+    }
+    companion object {
+        val shared: ModelClassBuilder
+            get() = ModelClassBuilder()
+    }
 }
 ```
 
@@ -62,11 +71,11 @@ class ModelClassBuilder(
 <dependency>
     <groupId>com.github.atsushi130</groupId>
     <artifactId>builderkit</artifactId>
-    <version>0.4.0</version>
+    <version>0.6.0</version>
 </dependency>
 ```
 
 **Gradle**
 ```gradle
-compile 'com.github.atsushi130:builderkit:0.4.0'
+compile 'com.github.atsushi130:builderkit:0.6.0'
 ```

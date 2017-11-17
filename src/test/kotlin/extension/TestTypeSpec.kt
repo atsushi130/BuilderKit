@@ -19,6 +19,7 @@ package extension
 import builderkit.*
 import com.squareup.kotlinpoet.*
 import org.junit.Test
+import java.lang.reflect.Type
 import kotlin.test.assertEquals
 
 class TestTypeSpec {
@@ -44,7 +45,7 @@ class TestTypeSpec {
         val property  = propertySpec.initializer(name).mutable(true).addModifiers(KModifier.PRIVATE).build()
 
         val expect = TypeSpec.classBuilder(this.testClassInformation.className)
-                             .primaryConstructor(FunSpec.constructorBuilder().addParameter(parameter).build()).addProperty(property)
+                             .primaryConstructor(FunSpec.constructorBuilder().addParameter(parameter).addModifiers(KModifier.PRIVATE).build()).addProperty(property)
                              .build()
 
         val result = TypeSpec.classBuilder(this.testClassInformation.className).definePrimaryConstructor(this.testClassInformation).build()
@@ -87,6 +88,24 @@ class TestTypeSpec {
 
         val expect = TypeSpec.classBuilder(this.testClassInformation.className).addFunction(function).build()
         val result = TypeSpec.classBuilder(this.testClassInformation.className).defineWithFunctions(this.testClassInformation).build()
+        assertEquals(expect, result)
+    }
+
+    @Test
+    fun buildable_companion() {
+
+        val builderClassName = "${this.testClassInformation.className}Builder"
+        val getter           = FunSpec.getterBuilder().addStatement("return $builderClassName()").build()
+        val property         = PropertySpec.builder("shared", TypeVariableName("$builderClassName")).getter(getter).build()
+
+        val expect = TypeSpec.classBuilder(this.testClassInformation.className)
+                             .companionObject(
+                                     TypeSpec.companionObjectBuilder()
+                                             .addProperty(property)
+                                             .build()
+                             ).build()
+
+        val result = TypeSpec.classBuilder(this.testClassInformation.className).defineCompanion(this.testClassInformation).build()
         assertEquals(expect, result)
     }
 }

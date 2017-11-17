@@ -24,7 +24,16 @@ import extension.definePrimaryConstructor
 import java.io.File
 import kotlin.reflect.KClass
 
-class BuilderGenerator {
+class BuilderGenerator(private val indent: String, private val path: File) {
+
+    /**
+     * Generate kClasses Builder class
+     * @param kClasses target classes
+     */
+    fun generates(vararg kClasses: KClass<*>) {
+        BuilderGenerator.generates(kClasses.toList(), this.indent, this.path)
+    }
+
     companion object {
 
         /**
@@ -40,12 +49,20 @@ class BuilderGenerator {
         /**
          * Generate kClasses Builder class
          * @param kClasses target classes
+         */
+        fun generates(vararg kClasses: KClass<*>) {
+            this.generates(kClasses.toList(), this.defaultIndent, this.path)
+        }
+
+        /**
+         * Generate kClasses Builder class
+         * @param kClasses target classes
          * @param indent indent
          * @param path output file path
          */
-        fun generates(vararg kClasses: KClass<*>, indent: String = builderkit.BuilderGenerator.Companion.defaultIndent, path: File = builderkit.BuilderGenerator.Companion.path) {
+        private fun generates(kClasses: List<KClass<*>>, indent: String, path: File) {
             kClasses.forEach {
-                BuilderGenerator.Companion.generate(it, indent, path)
+                this.generate(it, indent, path)
             }
         }
 

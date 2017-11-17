@@ -56,17 +56,32 @@ class ModelClassBuilder(
 }
 ```
 
+## Other Usage
+**Specify indent and output file path**
+```kotlin
+import java.io.File
+
+class Generator {
+    companion object {
+        @JvmStatic fun main(vararg args: String) {
+            val builder = BuilderGenerator(indent = "\t", path = File("src/gen/kotlin/"))
+            builder.generates(ModelClass::class)
+        }
+    }
+}
+```
+
 ## Dependency
 **Maven**
 ```xml
 <dependency>
     <groupId>com.github.atsushi130</groupId>
     <artifactId>builderkit</artifactId>
-    <version>0.4.0</version>
+    <version>0.6.0</version>
 </dependency>
 ```
 
 **Gradle**
 ```gradle
-compile 'com.github.atsushi130:builderkit:0.4.0'
+compile 'com.github.atsushi130:builderkit:0.6.0'
 ```

@@ -39,7 +39,7 @@ class BuilderGenerator(private val indent: String, private val path: File) {
         /**
          * Default output file path
          */
-        private val path = File("generate/src")
+        private val path = File("src/gen/kotlin/")
 
         /**
          * Default indent

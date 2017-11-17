@@ -8,7 +8,7 @@
 [![Version](https://img.shields.io/maven-central/v/com.github.atsushi130/builderkit.svg)](https://search.maven.org/#search|gav|1|g%3A"com.github.atsushi130"%20AND%20a%3A"builderkit")
 
 ## Usage
-First, implement Generator class to `/src/gen/kotlin`.
+Implement Generator class to `/src/gen/kotlin`.
 ```kotlin
 class Generator {
     companion object {
@@ -18,11 +18,7 @@ class Generator {
     }
 }
 ```
-
-Second, make a directory for generator.
-```
-❯ mkdir generate/src
-```
+Builder class is automatically generated to `src/gen/kotlin/` by default.
 
 ## Outout Builder class
 **Sample model class**
@@ -56,17 +52,32 @@ class ModelClassBuilder(
 }
 ```
 
+## Other Usage
+**Specify indent and output file path**
+```kotlin
+import java.io.File
+
+class Generator {
+    companion object {
+        @JvmStatic fun main(vararg args: String) {
+            val builder = BuilderGenerator(indent = "\t", path = File("src/gen/kotlin/"))
+            builder.generates(ModelClass::class)
+        }
+    }
+}
+```
+
 ## Dependency
 **Maven**
 ```xml
 <dependency>
     <groupId>com.github.atsushi130</groupId>
     <artifactId>builderkit</artifactId>
-    <version>0.4.0</version>
+    <version>0.6.0</version>
 </dependency>
 ```
 
 **Gradle**
 ```gradle
-compile 'com.github.atsushi130:builderkit:0.4.0'
+compile 'com.github.atsushi130:builderkit:0.6.0'
 ```

@@ -20,7 +20,7 @@ class Generator {
 ```
 Builder class is automatically generated to `src/gen/kotlin/` by default.
 
-## Outout Builder class
+## Output Builder class
 **Sample model class**
 ```kotlin
 data class ModelClass(val arg1: Int, val arg2: List<String>, val arg3: MyClass)
